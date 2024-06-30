@@ -1,10 +1,25 @@
+
 <html>
+<style>
+body {
+
+    background-color: #05f0f0;
+    background-image: url('https://static.tildacdn.com/tild3932-3239-4138-a437-376231646361/1-2-700x615.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
 <body>
-<h1>это страница про макак<h1>
+<h1 style="color: red;">ПЕТУШНЯ<h1>
 <h2>
 <ul>
-    <img src="https://o-prirode.ru/wp-content/uploads/2018/05/gamadril-e1527413159819.jpg"  width="400" height="200">    <li><a href="https://ru.wikipedia.org/wiki/%D0%93%D0%B0%D0%BC%D0%B0%D0%B4%D1%80%D0%B8%D0%BB">гамадрилл</a></li>
-    <img src="https://ecoportal.info/wp-content/uploads/2022/09/zelenaya-martyshka-1-544x408.jpg"  width="400" height="200">    <li><a href="https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D1%80%D1%82%D1%8B%D1%88%D0%BA%D0%B8">мартышки</a></li>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Schimpanse_Zoo_Leipzig.jpg/1200px-Schimpanse_Zoo_Leipzig.jpg"  width="400" height="200">    <li><a href="https://ru.wikipedia.org/wiki/%D0%A8%D0%B8%D0%BC%D0%BF%D0%B0%D0%BD%D0%B7%D0%B5">шимпанзе</a></li>
+    <img src="https://i.pinimg.com/564x/15/ac/f5/15acf5f57719bfdda9bb46580d668ebb.jpg"  width="400" height="200">    <li><a style="color: #f7d705;" href="https://vk.com/meow1619">тёма</a></li>
+
+    <img src="https://i.pinimg.com/736x/85/c5/f0/85c5f0b4a09fc59d82cfd62b5240753c.jpg"  width="400" height="200">    <li><a style="color: #4df007;"href="https://web.telegram.org/a/#1845927616">матюха228</a></li>
+
+    <img src="https://i.pinimg.com/736x/91/c5/42/91c542af8dade9abc93b0fb0acdf9212.jpg"  width="400" height="200">    <li><a style="color: #f007b6;" href="https://vk.com/id_stepanochka">егорка)</a></li>
+
+    <img src="https://i.pinimg.com/736x/c1/07/a3/c107a31818726a4bd0387df8605a311c.jpg"  width="400" height="200">    <li><a style="color: #c44716;" href="https://vk.com/id650364152">тимофяо</a></li>
 </ul>
 </h2>
+    </body>
