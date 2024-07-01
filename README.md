@@ -2,7 +2,6 @@
 <style>
 body {
 
-    background-color: #05f0f0;
     background-image: url('https://static.tildacdn.com/tild3932-3239-4138-a437-376231646361/1-2-700x615.jpg');
     background-repeat: no-repeat;
     background-size: cover;
