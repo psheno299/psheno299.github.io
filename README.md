@@ -209,7 +209,7 @@
             margin: 15% auto;
             padding: 20px;
             border-radius: 5px;
-            width: 300px;
+            width: 350px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
@@ -236,11 +236,33 @@
             margin: 5px 0;
             background-color: #eee4da;
             border-radius: 3px;
-            cursor: pointer;
+            position: relative;
         }
         
         .saved-game:hover {
             background-color: #ede0c8;
+        }
+        
+        .saved-game-info {
+            padding-right: 30px;
+        }
+        
+        .delete-save {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: #f65e3b;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .delete-save:hover {
+            background-color: #f67c5f;
         }
         
         .save-name-input {
@@ -255,7 +277,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>2048</h1>
+
         <div class="scores">
             <div class="score-container">
                 <div class="score-title">Счет</div>
@@ -415,16 +437,40 @@
                 for (const [name, data] of Object.entries(saves)) {
                     const gameElement = document.createElement('div');
                     gameElement.className = 'saved-game';
-                    gameElement.innerHTML = `
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-save';
+                    deleteBtn.innerHTML = '×';
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteSave(name);
+                    });
+                    
+                    const gameInfo = document.createElement('div');
+                    gameInfo.className = 'saved-game-info';
+                    gameInfo.innerHTML = `
                         <strong>${name}</strong><br>
                         Счет: ${data.score} | Время: ${formatTime(data.time)}<br>
                         Дата: ${data.date}
                     `;
+                    
+                    gameElement.appendChild(gameInfo);
+                    gameElement.appendChild(deleteBtn);
                     gameElement.addEventListener('click', () => {
                         loadGame(name);
                         loadModal.style.display = 'none';
                     });
+                    
                     savedGamesList.appendChild(gameElement);
+                }
+            }
+            
+            // Удаление сохранения
+            function deleteSave(name) {
+                if (confirm(`Удалить сохранение "${name}"?`)) {
+                    delete saves[name];
+                    saveSaves();
+                    updateSavedGamesList();
                 }
             }
             
