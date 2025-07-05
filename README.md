@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -342,6 +343,7 @@
             let seconds = 0;
             let timerInterval;
             let saves = {};
+            let tiles = {}; // Объект для хранения позиций плиток
             
             // Инициализация игры
             function init() {
@@ -415,7 +417,8 @@
                     gameElement.className = 'saved-game';
                     gameElement.innerHTML = `
                         <strong>${name}</strong><br>
-                        Счет: ${data.score} | Время: ${formatTime(data.time)}
+                        Счет: ${data.score} | Время: ${formatTime(data.time)}<br>
+                        Дата: ${data.date}
                     `;
                     gameElement.addEventListener('click', () => {
                         loadGame(name);
@@ -433,11 +436,21 @@
                     return;
                 }
                 
+                // Собираем данные о текущих плитках
+                const currentTiles = {};
+                document.querySelectorAll('.tile').forEach(tile => {
+                    const value = parseInt(tile.textContent);
+                    const left = parseInt(tile.style.left);
+                    const top = parseInt(tile.style.top);
+                    currentTiles[`${left}_${top}`] = value;
+                });
+                
                 const gameState = {
                     board: board,
                     score: score,
                     time: seconds,
-                    date: new Date().toLocaleString()
+                    date: new Date().toLocaleString(),
+                    tiles: currentTiles // Сохраняем позиции плиток
                 };
                 
                 saves[saveName] = gameState;
@@ -458,6 +471,7 @@
                 board = gameState.board;
                 score = gameState.score;
                 seconds = gameState.time;
+                tiles = gameState.tiles || {};
                 
                 scoreDisplay.textContent = score;
                 timerDisplay.textContent = formatTime(seconds);
@@ -467,8 +481,8 @@
                 const gameOverElement = document.querySelector('.game-over');
                 if (gameOverElement) gameOverElement.remove();
                 
-                // Обновляем отображение
-                updateView();
+                // Восстанавливаем плитки из сохранения
+                restoreTiles();
                 
                 // Перезапускаем таймер
                 clearInterval(timerInterval);
@@ -478,6 +492,19 @@
                 }, 1000);
                 
                 isGameOver = false;
+            }
+            
+            // Восстановление плиток из сохранения
+            function restoreTiles() {
+                for (const [pos, value] of Object.entries(tiles)) {
+                    const [left, top] = pos.split('_').map(Number);
+                    const tile = document.createElement('div');
+                    tile.className = `tile tile-${value}`;
+                    tile.textContent = value;
+                    tile.style.left = `${left}px`;
+                    tile.style.top = `${top}px`;
+                    gameContainer.appendChild(tile);
+                }
             }
             
             // Форматирование времени
@@ -512,6 +539,7 @@
                 isGameOver = false;
                 scoreDisplay.textContent = score;
                 startTimer();
+                tiles = {};
                 
                 // Удаляем все плитки и сообщение о конце игры
                 document.querySelectorAll('.tile').forEach(tile => tile.remove());
